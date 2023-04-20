@@ -53,16 +53,19 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.twilio.rest.api.v2010.account.message.Media;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.Map;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.media.MediaPlayer;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import services.Pdf2;
+
 
 
 
@@ -141,11 +144,13 @@ public class AjouterabonnementController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO     
-        
+            // Créez un objet Media à partir du fichier audio
+  
         partError.setVisible(false);
         //idLabel.setText("");
         getabonns(); 
         }
+    
   
      private boolean NoDate() {
          LocalDate currentDate = LocalDate.now();     
@@ -163,7 +168,7 @@ public class AjouterabonnementController implements Initializable {
     }
           @FXML
     private void ajouterabonnement(ActionEvent abonn) {
-   
+    
          int part=0;
         if ((nom_abonnField.getText().length() == 0) || (typeabonnField.getText().length() == 0) || (imageabonnField.getText().length() == 0) || (code_promoField.getText().length() == 0)|| (descriptionabonnField.getText().length() == 0)) {
             Alert alert = new Alert(Alert.AlertType.ERROR);

@@ -119,52 +119,88 @@ import javafx.util.Duration;
         );
 
         // Configurer l'interactivité pour les données pie chart
-        StatsChart.getData().forEach(data ->
-        data.getNode().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            // Obtenir la valeur actuelle de l'élément data
-            double currentValue = data.getPieValue();
+       StatsChart.getData().forEach(data ->
+    data.getNode().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+        // Obtenir la valeur actuelle de l'élément data
+        double currentValue = data.getPieValue();
 
-            // Afficher un message avec la valeur de data
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Statistique Abonnement(s)");
-            alert.setHeaderText(data.getName());
-            String reduction = "";
-            switch(data.getName().split(" ")[0]) {
-                case "BRONZE":
-                    reduction = "10" + "%";
-                    break;
-                case "SILVER":
-                    reduction = "25" + "%";
-                    break;
-                case "GOLD":
-                    reduction = "40" + "%";
-                    break;
-            }
-           alert.setContentText("Prix total : " + Math.round(currentValue) + " DT\n"
-    + "Réduction : " + reduction + "\n"
-    + "Prix total avec réduction : " + calculateTotalWithDiscount(currentValue, data.getName()));
-alert.showAndWait();
+        // Obtenir le nombre d'abonnements de ce type
+        long nbAbonnements = abonnementsParType.getOrDefault(data.getName().split(" ")[0], 0L);
 
-        })
-);
+        // Afficher un message avec la valeur de data et le nombre d'abonnements
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Statistique Abonnement(s)");
+        alert.setHeaderText(data.getName());
+        String reduction = "";
+        double totalWithDiscount = calculateTotalWithDiscount(currentValue, data.getName(), nbAbonnements);
+        switch(data.getName().split(" ")[0]) {
+            case "BRONZE":
+                reduction = "10" + "%";
+                
+                break;
+            case "SILVER":
+                reduction = "25" + "%";
+                
+                break;
+            case "GOLD":
+              
+                reduction = "40" + "%" ;
+                if (nbAbonnements % 3 >= 1) {
+        reduction = "41" + "%" ;
     }
-    private String calculateTotalWithDiscount(double value, String subscriptionType) {
-    double discountedValue = value;
+                break;
+        }
+        alert.setContentText("Nombre d'abonnements : " + nbAbonnements + "\n"
+            + "Prix total : " + Math.round(currentValue) * nbAbonnements + " DT\n"
+            + "Réduction : " + reduction + "\n"
+            + "Prix total avec réduction pour " + nbAbonnements + " abonnements : " + Math.round(totalWithDiscount) + " DT");
+        alert.showAndWait();
+    })
+);
+
+
+    }
+    private double calculateTotalWithDiscount(double price, String subscriptionType, long nbAbonnements) {
+    double discount = 0.0;
+    
     switch (subscriptionType.split(" ")[0]) {
         case "BRONZE":
-            discountedValue *= 0.9;
+            discount = 0.1;
+   
+    
+            
             break;
         case "SILVER":
-            discountedValue *= 0.75;
+            discount = 0.25;
+       
+   
+          
             break;
         case "GOLD":
-            discountedValue *= 0.6;
-            break;
-        default:
+            discount = 0.4;
+    
+    if (nbAbonnements % 3 >= 1) {
+        discount += 0.01;
+    }
+           
             break;
     }
-    return Math.round(discountedValue) + " DT";
+
+    // Incrémenter le pourcentage de réduction de 1% si le nombre d'abonnements est un multiple de 3
+    
+    
+    
+   
+    
+    
+   
+    
+    
+
+    double discountedPrice = price - (price * discount);
+    return discountedPrice * nbAbonnements;
 }
+
 
 
 
