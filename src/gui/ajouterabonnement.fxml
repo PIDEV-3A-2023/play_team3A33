@@ -62,7 +62,7 @@
       <Button fx:id="supprimerBoutton" layoutX="1193.0" layoutY="567.0" mnemonicParsing="false" onAction="#supprimerabonnement" prefHeight="41.0" prefWidth="99.0" style="-fx-background-radius: 30;" text="SUPPRIMER" textFill="RED" />
       <Button fx:id="ajouterButton" layoutX="1193.0" layoutY="433.0" mnemonicParsing="false" onAction="#ajouterabonnement" prefHeight="41.0" prefWidth="99.0" style="-fx-background-radius: 30;" text="AJOUTER" textFill="#f80000" />
       <Button fx:id="afficherBoutton" layoutX="1179.0" layoutY="29.0" mnemonicParsing="false" onAction="#afficherabonnement" prefHeight="60.0" prefWidth="155.0" style="-fx-background-radius: 30;" text="Participer au promotion" textFill="RED" />
-      <Button fx:id="supprimerBoutton" layoutX="1193.0" layoutY="499.0" mnemonicParsing="false" onAction="#modifierabonnement" prefHeight="41.0" prefWidth="99.0" style="-fx-background-radius: 30;" text="MODIFIER" textFill="RED" />
+      <Button fx:id="modifierBoutton" layoutX="1193.0" layoutY="499.0" mnemonicParsing="false" onAction="#modifierabonnement" prefHeight="41.0" prefWidth="99.0" style="-fx-background-radius: 30;" text="MODIFIER" textFill="RED" />
       <DatePicker fx:id="dateabonnField" layoutX="137.0" layoutY="473.0" prefHeight="26.0" prefWidth="180.0" />
       <TableView fx:id="abonnementTv" layoutX="325.0" layoutY="395.0" onMouseClicked="#choisirabonn" prefHeight="355.0" prefWidth="837.0" style="-fx-background-color: #FFE4B5;">
         <columns>
@@ -71,7 +71,7 @@
             <TableColumn fx:id="imageabonnTv" minWidth="9.599945068359375" prefWidth="136.7999267578125" text="IMAGE Abonnement" />
             <TableColumn fx:id="dateabonnTv" prefWidth="143.20001220703125" text="DATE Abonnement" />
             <TableColumn fx:id="descriptionabonnTv" prefWidth="143.20001220703125" text="DESCRIPTION" />
-            <TableColumn fx:id="nbrpartTv" prefWidth="164.00006103515625" text="CODE_Promo" />
+            <TableColumn fx:id="code_promoTv" prefWidth="164.00006103515625" text="CODE_Promo" />
         </columns>
       </TableView>
       <Label layoutX="12.0" layoutY="540.0" prefHeight="18.0" prefWidth="93.0" text="CODE_PROMO" textFill="WHITE">
@@ -79,8 +79,8 @@
             <Font name="System Bold Italic" size="12.0" />
          </font>
       </Label>
-      <TextField fx:id="nbparticipantsField" layoutX="149.0" layoutY="532.0" prefHeight="35.0" prefWidth="168.0" promptText="entrer le code promo obtenu" style="-fx-background-radius: 30;" />
-      <Label fx:id="partError" layoutX="15.0" layoutY="573.0" prefHeight="21.0" prefWidth="296.0" text="Le Code_promo doit etre (&gt;ou =) 10" textFill="#ff3c3c">
+      <TextField fx:id="code_promoField" layoutX="149.0" layoutY="532.0" prefHeight="35.0" prefWidth="168.0" promptText="entrer le code promo obtenu" style="-fx-background-radius: 30;" />
+      <Label fx:id="partError" layoutX="15.0" layoutY="573.0" prefHeight="21.0" prefWidth="296.0" text="Le Code_promo doit etre &gt;= 10" textFill="#ff3c3c">
          <font>
             <Font name="Arial" size="15.0" />
          </font>

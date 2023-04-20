@@ -55,10 +55,20 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
+import java.util.Map;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
+import javafx.scene.control.Alert.AlertType;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import services.Pdf2;
+
+
+
+
+
+
 
 
 /**
@@ -98,9 +108,9 @@ public class AjouterabonnementController implements Initializable {
     @FXML
     private TableColumn<abonnement, String> descriptionabonnTv;
      @FXML
-    private TableColumn<abonnement, Integer> nbrpartTv;
+    private TableColumn<abonnement, Integer> code_promoTv;
     @FXML
-    private TextField nbparticipantsField;
+    private TextField code_promoField;
     
     private Date date1;
     @FXML
@@ -155,7 +165,7 @@ public class AjouterabonnementController implements Initializable {
     private void ajouterabonnement(ActionEvent abonn) {
    
          int part=0;
-        if ((nom_abonnField.getText().length() == 0) || (typeabonnField.getText().length() == 0) || (imageabonnField.getText().length() == 0) || (nbparticipantsField.getText().length() == 0)|| (descriptionabonnField.getText().length() == 0)) {
+        if ((nom_abonnField.getText().length() == 0) || (typeabonnField.getText().length() == 0) || (imageabonnField.getText().length() == 0) || (code_promoField.getText().length() == 0)|| (descriptionabonnField.getText().length() == 0)) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error ");
             alert.setHeaderText("Error!");
@@ -171,7 +181,7 @@ public class AjouterabonnementController implements Initializable {
         }
        else{     
             try {
-                part = Integer.parseInt(nbparticipantsField.getText());
+                part = Integer.parseInt(code_promoField.getText());
                 partError.setVisible(false);
             } catch (Exception exc) {
                 System.out.println("Number of code_promo int");
@@ -188,13 +198,33 @@ public class AjouterabonnementController implements Initializable {
             else
             {
         abonnement e = new abonnement();
+        if (typeabonnField.getText().equals("Gold")) {
+    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    alert.setTitle("Information");
+    alert.setHeaderText("Prix de l'abonnement");
+    alert.setContentText("Le prix de cette abonnement est 250 DT.");
+    alert.showAndWait();
+} else if (typeabonnField.getText().equals("SILVER")) {
+    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    alert.setTitle("Information");
+    alert.setHeaderText("Prix de l'abonnement");
+    alert.setContentText("Le prix de cette abonnement est 150 DT.");
+    alert.showAndWait();
+} else if (typeabonnField.getText().equals("BRONZE")) {
+    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    alert.setTitle("Information");
+    alert.setHeaderText("Prix de l'abonnement");
+    alert.setContentText("Le prix de cette abonnement est 100 DT.");
+    alert.showAndWait();
+}
+
         e.setNom_abonn(nom_abonnField.getText());
         e.setType_abonn(typeabonnField.getText());
         e.setDescription_abonn(descriptionabonnField.getText());
         java.util.Date date_debut=java.util.Date.from(dateabonnField.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
         Date sqlDate = new Date(date_debut.getTime());
         e.setDate(sqlDate);
-        e.setCode_promo(Integer.valueOf(nbparticipantsField.getText()));
+        e.setCode_promo(Integer.valueOf(code_promoField.getText()));
         
         //lel image
         e.setImage_abonn(imageabonnField.getText());      
@@ -218,7 +248,7 @@ public class AjouterabonnementController implements Initializable {
         typeabonnField.setText("");
         descriptionabonnField.setText("");
         imageabonnField.setText("");
-        nbparticipantsField.setText("");
+        code_promoField.setText("");
         dateabonnField.setValue(null);    
     }
     
@@ -233,7 +263,7 @@ public class AjouterabonnementController implements Initializable {
             imageabonnTv.setCellValueFactory(new PropertyValueFactory("image_abonn"));
             dateabonnTv.setCellValueFactory(new PropertyValueFactory("date"));
             descriptionabonnTv.setCellValueFactory(new PropertyValueFactory("description_abonn"));
-            nbrpartTv.setCellValueFactory(new PropertyValueFactory("code_promo"));
+            code_promoTv.setCellValueFactory(new PropertyValueFactory("code_promo"));
             
             
            // this.delete();
@@ -253,7 +283,7 @@ public class AjouterabonnementController implements Initializable {
         Date d=Date.valueOf(dateabonnField.getValue());
         e.setDate(d);
         e.setImage_abonn(imageabonnField.getText());
-        e.setCode_promo(Integer.valueOf(nbparticipantsField.getText()));         
+        e.setCode_promo(Integer.valueOf(code_promoField.getText()));         
         Ev.modifierabonnement(e);
         reset();
         getabonns();         
@@ -298,12 +328,13 @@ public class AjouterabonnementController implements Initializable {
         imageabonnField.setText(e.getImage_abonn());
         descriptionabonnField.setText(e.getDescription_abonn());
         //dateabonnField.setValue((e.getDate()));
-        nbparticipantsField.setText(String.valueOf(e.getCode_promo()));       
+        code_promoField.setText(String.valueOf(e.getCode_promo()));       
         //lel image
         String path = e.getImage_abonn();
                File file=new File(path);
               Image img = new Image(file.toURI().toString());
                 imageview.setImage(img);
+                
         //////////////      
             String filename = Ev.GenerateQrabonn(e);
             System.out.println("filename lenaaa " + filename);
@@ -423,23 +454,39 @@ System.out.println("Your excel file has been generated!");
             document.open();
             Paragraph ph1 = new Paragraph("Voici un rapport détaillé de notre application qui contient tous les Abonnements . Pour chaque Abonnement, nous fournissons des informations telles que la date d'Aujourd'hui :" + DateRapport );
             Paragraph ph2 = new Paragraph(".");
-            PdfPTable table = new PdfPTable(3);
+            PdfPTable table = new PdfPTable(4);
             //On créer l'objet cellule.
             PdfPCell cell;
             //contenu du tableau.
             table.addCell("nom_abonn");
             table.addCell("type_abonn");
             table.addCell("description_abonn");
+            table.addCell("image_abonn");
              
             abonnement r = new abonnement();
-            Ev.recupererabonnement().forEach(e
-                    -> {
-                table.setHorizontalAlignment(Element.ALIGN_CENTER);
-                table.addCell(String.valueOf(e.getNom_abonn()));
-                table.addCell(String.valueOf(e.getType_abonn()));
-                table.addCell(String.valueOf(e.getDescription_abonn()));    
-            }
-            );
+            Ev.recupererabonnement().forEach(new Consumer<abonnement>() {
+                @Override
+                public void accept(abonnement e) {
+                    table.setHorizontalAlignment(Element.ALIGN_CENTER);
+                    table.addCell(String.valueOf(e.getNom_abonn()));
+                    table.addCell(String.valueOf(e.getType_abonn()));
+                    table.addCell(String.valueOf(e.getDescription_abonn()));
+                    try {
+    // Créer un objet Image à partir de l'image
+    String path = e.getImage_abonn();
+    com.itextpdf.text.Image img = com.itextpdf.text.Image.getInstance(path);
+    
+    // Définir la taille de l'image dans le tableau
+    img.scaleToFit(100, 100); // Définir la largeur et la hauteur de l'image
+    
+    // Ajouter l'image à la cellule du tableau
+    PdfPCell cell = new PdfPCell(img);
+    table.addCell(cell);
+} catch (Exception ex) {
+    table.addCell("Erreur lors du chargement de l'image");
+}
+         }
+            });
             document.add(ph1);
             document.add(ph2);
             document.add(table);

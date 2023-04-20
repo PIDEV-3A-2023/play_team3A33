@@ -48,6 +48,7 @@ public class promotionService {
             abonnement tempabonn = es.FetchOneabonn(p.getId_abonnement());
             System.out.println("before" + tempabonn);
             tempabonn.setCode_promo(tempabonn.getCode_promo() - 1);
+            tempabonn.setCode_promo(Math.max(tempabonn.getCode_promo() - 1, 0));
             es.modifierabonnement(tempabonn);
             int new_id = tempabonn.getId_ab();
             p.setAbonnement(tempabonn);

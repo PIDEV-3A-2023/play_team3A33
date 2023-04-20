@@ -22,24 +22,24 @@
             <Image url="@../utils/img/pexels-leon-ardho-1552106.jpg" />
          </image>
       </ImageView>
-      <TableView fx:id="tablepromotion" layoutX="76.0" layoutY="551.0" onMouseClicked="#choisirpromotion" prefHeight="318.0" prefWidth="833.0">
+      <TableView fx:id="tablepromotion" layoutX="76.0" layoutY="551.0" onMouseClicked="#choisirpromotion" prefHeight="318.0" prefWidth="680.0">
         <columns>
           <TableColumn fx:id="iduserTv" prefWidth="191.0" text="id utilisateur" />
           <TableColumn fx:id="idabonnTv" prefWidth="238.0" text="id Abonnement" />
             <TableColumn fx:id="datePartTv" prefWidth="233.0" text="date promotion" />
         </columns>
       </TableView>
-      <Button fx:id="modifierPartBtn" layoutX="1154.0" layoutY="681.0" mnemonicParsing="false" onAction="#modifierpromotion" prefHeight="59.0" prefWidth="126.0" style="-fx-background-radius: 30;" text="modifier promotion" textFill="#f05c00" />
-      <Button fx:id="supprimerPartBtn" layoutX="1154.0" layoutY="809.0" mnemonicParsing="false" onAction="#supprimerpromotion" prefHeight="59.0" prefWidth="126.0" style="-fx-background-radius: 30;" text="supprimer promotion" textFill="#ff4400">
+      <Button fx:id="modifierPartBtn" layoutX="1039.0" layoutY="704.0" mnemonicParsing="false" onAction="#modifierpromotion" prefHeight="59.0" prefWidth="201.0" style="-fx-background-radius: 30;" text="modifier promotion" textFill="#f05c00" />
+      <Button fx:id="supprimerPartBtn" layoutX="1039.0" layoutY="801.0" mnemonicParsing="false" onAction="#supprimerpromotion" prefHeight="59.0" prefWidth="201.0" style="-fx-background-radius: 30;" text="supprimer promotion" textFill="#ff4400">
          <font>
             <Font size="11.0" />
          </font></Button>
-      <TextField fx:id="idread" layoutX="917.0" layoutY="551.0" prefHeight="45.0" prefWidth="214.0" promptText="Id Promo" />
-      <TextField fx:id="iduserField" layoutX="917.0" layoutY="622.0" prefHeight="45.0" prefWidth="214.0" promptText="Id Utilisateur" />
-      <TextField fx:id="idabonnField" layoutX="917.0" layoutY="688.0" prefHeight="45.0" prefWidth="214.0" promptText="Id Abonnement" />
-      <TextField fx:id="datepartField1" layoutX="918.0" layoutY="752.0" prefHeight="45.0" prefWidth="214.0" promptText="Date Promo" />
-      <DatePicker fx:id="datepartField" layoutX="922.0" layoutY="816.0" prefHeight="45.0" prefWidth="221.0" promptText="entrer le date" />
-      <Label layoutX="363.0" layoutY="44.0" prefHeight="60.0" prefWidth="370.0" text="AFFICHER PROMOTION">
+      <TextField fx:id="idread" layoutX="778.0" layoutY="551.0" prefHeight="45.0" prefWidth="214.0" promptText="Id Promo" />
+      <TextField fx:id="iduserField" layoutX="778.0" layoutY="621.0" prefHeight="45.0" prefWidth="214.0" promptText="Id Utilisateur" />
+      <TextField fx:id="idabonnField" layoutX="778.0" layoutY="688.0" prefHeight="45.0" prefWidth="214.0" promptText="Id Abonnement" />
+      <TextField fx:id="datepartField1" layoutX="778.0" layoutY="756.0" prefHeight="45.0" prefWidth="214.0" promptText="Date Promo" />
+      <DatePicker fx:id="datepartField" layoutX="778.0" layoutY="823.0" prefHeight="45.0" prefWidth="221.0" promptText="entrer le date" />
+      <Label layoutX="363.0" layoutY="44.0" prefHeight="60.0" prefWidth="424.0" text="AFFICHER PROMOTION">
          <font>
             <Font name="Calisto MT Bold" size="28.0" />
          </font>
@@ -52,11 +52,11 @@
             </LinearGradient>
          </textFill>
       </Label>
-      <Button fx:id="ajouter" layoutX="25.0" layoutY="75.0" mnemonicParsing="false" onAction="#ajouterabonnement" prefHeight="59.0" prefWidth="150.0" style="-fx-background-radius: 30;" text="ajouter ABONNEMENT" textFill="#ff4400">
+      <Button fx:id="ajouter" layoutX="25.0" layoutY="75.0" mnemonicParsing="false" onAction="#ajouterabonnement" prefHeight="59.0" prefWidth="201.0" style="-fx-background-radius: 30;" text="ajouter ABONNEMENT" textFill="#ff4400">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <TextField fx:id="chercherabonnField" layoutX="1154.0" layoutY="545.0" nodeOrientation="LEFT_TO_RIGHT" onKeyPressed="#rechercherabonnement" prefHeight="57.0" prefWidth="126.0" promptText="donner le nom d'abonnement" style="-fx-background-radius: 30;" />
+      <TextField fx:id="chercherabonnField" layoutX="1031.0" layoutY="574.0" nodeOrientation="LEFT_TO_RIGHT" onKeyPressed="#rechercherabonnement" prefHeight="57.0" prefWidth="246.0" promptText="donner le nom d'abonnement" style="-fx-background-radius: 30;" />
    </children>
 </AnchorPane>
