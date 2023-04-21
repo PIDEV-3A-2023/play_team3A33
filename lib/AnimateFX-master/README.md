@@ -37,6 +37,8 @@ dependencies {
 <dependency>
   <groupId>io.github.typhon0</groupId>
   <artifactId>AnimateFX</artifactId>
+<groupId>org.openjfx</groupId>
+    <artifactId>javafx-media</artifactId>
   <version>1.2.4</version>
   <type>pom</type>
 </dependency>
@@ -58,6 +60,7 @@ repositories {
 
 dependencies {
     api 'io.github.typhon0:AnimateFX:1.2.4-SNAPSHOT'
+    implementation 'org.openjfx:javafx-media:17'
 }
 ```
 
@@ -78,6 +81,12 @@ dependencies {
             <artifactId>AnimateFX</artifactId>
             <version>1.2.4-SNAPSHOT</version>
         </dependency>
+        <dependency>
+              <groupId>org.openjfx</groupId>
+              <artifactId>javafx-media</artifactId>
+                 <version>17</version>
+          </dependency>
+
  </dependencies>
 ```
 

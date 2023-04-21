@@ -66,6 +66,11 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import services.Pdf2;
 
+import javafx.scene.media.MediaPlayer;
+import java.nio.file.Paths;
+
+
+
 
 
 
@@ -142,14 +147,30 @@ public class AjouterabonnementController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO     
-            // Créez un objet Media à partir du fichier audio
-  
-        partError.setVisible(false);
-        //idLabel.setText("");
-        getabonns(); 
-        }
+public void initialize(URL url, ResourceBundle rb) {
+    FileChooser fileChooser = new FileChooser();
+fileChooser.setTitle("Sélectionner un fichier audio");
+File selectedFile = fileChooser.showOpenDialog(null);
+if (selectedFile != null) {
+    
+    javafx.scene.media.Media javafxMedia;
+        javafxMedia = ( new javafx.scene.media.Media(selectedFile.toURI().toString()));
+        MediaPlayer mediaPlayer = new MediaPlayer(javafxMedia);
+        mediaPlayer.setAutoPlay(true);
+        } else {
+System.out.println("Aucun fichier audio sélectionné.");
+}
+
+    // TODO  
+    
+
+    // Créez un objet Media à partir du fichier audio
+
+    partError.setVisible(false);
+    //idLabel.setText("");
+    getabonns(); 
+}
+
     
   
      private boolean NoDate() {
@@ -245,6 +266,8 @@ public class AjouterabonnementController implements Initializable {
             System.out.println(ex.getMessage());
         }      
         getabonns();
+        
+
     }}}
     
     //fin d ajout d'un abonnement
