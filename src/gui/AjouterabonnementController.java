@@ -68,6 +68,20 @@ import services.Pdf2;
 
 import javafx.scene.media.MediaPlayer;
 import java.nio.file.Paths;
+import java.util.Optional;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.scene.canvas.Canvas;
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.Scene;
+import javafx.scene.control.ButtonType;
+import javafx.scene.layout.StackPane;
+import javafx.scene.web.WebView;
+
+
+
+
 
 
 
@@ -102,6 +116,8 @@ public class AjouterabonnementController implements Initializable {
     private Button ajouterButton;
     @FXML
     private Button afficherBoutton;
+    @FXML
+    private Button goToPong;
   
     @FXML
     private TableView<abonnement> abonnementTv;
@@ -143,33 +159,52 @@ public class AjouterabonnementController implements Initializable {
     private ImageView QrCode;
     @FXML
     private ImageView GoBackBtn;
+    @FXML
+    private Canvas myCanvas;
+
+    
     /**
      * Initializes the controller class.
      */
-    @Override
+@Override
 public void initialize(URL url, ResourceBundle rb) {
-    FileChooser fileChooser = new FileChooser();
-fileChooser.setTitle("Sélectionner un fichier audio");
-File selectedFile = fileChooser.showOpenDialog(null);
-if (selectedFile != null) {
-    
-    javafx.scene.media.Media javafxMedia;
-        javafxMedia = ( new javafx.scene.media.Media(selectedFile.toURI().toString()));
-        MediaPlayer mediaPlayer = new MediaPlayer(javafxMedia);
-        mediaPlayer.setAutoPlay(true);
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    alert.setTitle("Choix de l'action");
+    alert.setHeaderText("Que voulez-vous faire ?");
+    alert.setContentText("Voulez-vous passer à l'application ou choisir une musique ?");
+
+    ButtonType buttonTypeApp = new ButtonType("Aller à l'application");
+    ButtonType buttonTypeMusic = new ButtonType("Choisir une musique");
+
+    alert.getButtonTypes().setAll(buttonTypeApp, buttonTypeMusic);
+
+    Optional<ButtonType> result = alert.showAndWait();
+    if (result.get() == buttonTypeApp){
+        // Faire quelque chose pour passer à l'application
+    } else if (result.get() == buttonTypeMusic) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Sélectionner un fichier audio");
+        File defaultDirectory = new File("C:\\Users\\Motaz\\mm Dropbox\\Motaz Sammoud\\PC\\Desktop\\KKKK\\dernierrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr\\ABONNEMENT\\src\\musique");
+        fileChooser.setInitialDirectory(defaultDirectory);
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Fichiers audio (*.mp3, *.wav, *.flac)", "*.mp3", "*.wav", "*.flac");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+            javafx.scene.media.Media javafxMedia = new javafx.scene.media.Media(selectedFile.toURI().toString());
+            MediaPlayer mediaPlayer = new MediaPlayer(javafxMedia);
+            mediaPlayer.setAutoPlay(true);
         } else {
-System.out.println("Aucun fichier audio sélectionné.");
-}
-
-    // TODO  
-    
-
-    // Créez un objet Media à partir du fichier audio
+            System.out.println("Aucun fichier audio sélectionné.");
+        }
+    }
 
     partError.setVisible(false);
     //idLabel.setText("");
     getabonns(); 
 }
+
+
+
 
     
   
@@ -552,6 +587,18 @@ System.out.println("Your excel file has been generated!");
             // Set the root of the current scene to the new FXML file
             GoBackBtn.getScene().setRoot(root);
     }
+  
+@FXML
+private void goToPong(ActionEvent abonn) {
+    try {
+            //navigation
+            Parent loader = FXMLLoader.load(getClass().getResource("pppppp.fxml"));
+            goToPong.getScene().setRoot(loader);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        } // canvas est le nom de votre composant Canvas
+}
+
 
     }
 

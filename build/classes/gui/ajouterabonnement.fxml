@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.canvas.*?>
 <?import javafx.scene.paint.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
@@ -15,10 +16,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.canvas.Canvas?>
 
-<AnchorPane id="AnchorPane" prefHeight="906.0" prefWidth="1348.0" style="-fx-background-color: #FFEFD5;" stylesheets="@fullpackstyling.css"  xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AjouterabonnementController">
+<AnchorPane id="AnchorPane" prefHeight="896.0" prefWidth="1338.0" style="-fx-background-color: #FFEFD5;" stylesheets="@fullpackstyling.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AjouterabonnementController">
    <children>
-      <ImageView fitHeight="906.0" fitWidth="1336.0">
+      <ImageView fitHeight="921.0" fitWidth="1348.0" layoutX="-33.0" layoutY="-63.0">
          <image>
             <Image url="@../utils/img/pexels-leon-ardho-1552242.jpg" />
          </image>
@@ -27,6 +29,7 @@
       <TextField fx:id="typeabonnField" layoutX="157.0" layoutY="595.0" prefHeight="35.0" prefWidth="126.0" promptText="TYPE abonnement" style="-fx-background-radius: 30;" />
       <TextField fx:id="imageabonnField" layoutX="139.0" layoutY="712.0" prefHeight="35.0" prefWidth="118.0" promptText="IMAGE abonnement" style="-fx-background-radius: 30;" />
       <TextField fx:id="nom_abonnField" layoutX="157.0" layoutY="404.0" prefHeight="35.0" prefWidth="126.0" promptText="NOM abonnement" style="-fx-background-radius: 30;" />
+      <Canvas fx:id="myCanvas" height="784.0" layoutX="131.0" layoutY="14.0" width="1046.0" />
       <Label layoutX="344.0" layoutY="179.0" prefHeight="60.0" prefWidth="370.0" text="AJOUTER ABONNEMENT">
          <font>
             <Font name="Calisto MT Bold" size="28.0" />
@@ -59,10 +62,10 @@
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font></Label>
-      <Button fx:id="supprimerBoutton" layoutX="1193.0" layoutY="567.0" mnemonicParsing="false" onAction="#supprimerabonnement" prefHeight="41.0" prefWidth="99.0" style="-fx-background-radius: 30;" text="SUPPRIMER" textFill="RED" />
-      <Button fx:id="ajouterButton" layoutX="1193.0" layoutY="433.0" mnemonicParsing="false" onAction="#ajouterabonnement" prefHeight="41.0" prefWidth="99.0" style="-fx-background-radius: 30;" text="AJOUTER" textFill="#f80000" />
-      <Button fx:id="afficherBoutton" layoutX="1179.0" layoutY="29.0" mnemonicParsing="false" onAction="#afficherabonnement" prefHeight="60.0" prefWidth="155.0" style="-fx-background-radius: 30;" text="Participer au promotion" textFill="RED" />
-      <Button fx:id="modifierBoutton" layoutX="1193.0" layoutY="499.0" mnemonicParsing="false" onAction="#modifierabonnement" prefHeight="41.0" prefWidth="99.0" style="-fx-background-radius: 30;" text="MODIFIER" textFill="RED" />
+      <Button fx:id="supprimerBoutton" layoutX="767.0" layoutY="330.0" mnemonicParsing="false" onAction="#supprimerabonnement" prefHeight="44.0" prefWidth="180.0" style="-fx-background-radius: 30;" text="SUPPRIMER" textFill="RED" />
+      <Button fx:id="ajouterButton" layoutX="325.0" layoutY="330.0" mnemonicParsing="false" onAction="#ajouterabonnement" prefHeight="44.0" prefWidth="180.0" style="-fx-background-radius: 30;" text="AJOUTER" textFill="#f80000" />
+      <Button fx:id="afficherBoutton" layoutX="1047.0" layoutY="28.0" mnemonicParsing="false" onAction="#afficherabonnement" prefHeight="60.0" prefWidth="273.0" style="-fx-background-radius: 30;" text="Participer au promotion" textFill="RED" />
+      <Button fx:id="modifierBoutton" layoutX="551.0" layoutY="330.0" mnemonicParsing="false" onAction="#modifierabonnement" prefHeight="44.0" prefWidth="180.0" style="-fx-background-radius: 30;" text="MODIFIER" textFill="RED" />
       <DatePicker fx:id="dateabonnField" layoutX="137.0" layoutY="473.0" prefHeight="26.0" prefWidth="180.0" />
       <TableView fx:id="abonnementTv" layoutX="325.0" layoutY="395.0" onMouseClicked="#choisirabonn" prefHeight="355.0" prefWidth="837.0" style="-fx-background-color: #FFE4B5;">
         <columns>
@@ -87,17 +90,18 @@
       </Label>
       <Label fx:id="idLabel" layoutX="31.0" layoutY="98.0" prefHeight="18.0" prefWidth="37.0" />
       <TextField fx:id="idmodifierField" layoutX="9.0" layoutY="352.0" prefHeight="35.0" prefWidth="99.0" promptText="Id abonnement" style="-fx-background-radius: 30;" />
-      <Button fx:id="participerbutton" layoutX="18.0" layoutY="36.0" mnemonicParsing="false" onAction="#afficherpromotions" prefHeight="60.0" prefWidth="155.0" style="-fx-background-radius: 30;" text="Afficher les promotions" textFill="RED" />
-      <Button layoutX="270.0" layoutY="717.0" mnemonicParsing="false" onAction="#uploadImage" text="upload" />
-      <ImageView fx:id="imageview" fitHeight="204.0" fitWidth="235.0" layoutX="1099.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true" />
-      <Button layoutX="1190.0" layoutY="640.0" mnemonicParsing="false" onAction="#excelabonn" prefHeight="41.0" prefWidth="105.0" style="-fx-background-radius: 30;" text="ajouter Excel" textFill="RED" />
-      <Button layoutX="1190.0" layoutY="709.0" mnemonicParsing="false" onAction="#pdfabonn" prefHeight="41.0" prefWidth="105.0" style="-fx-background-radius: 30;" text="pdf" textFill="RED" />
+      <Button fx:id="participerbutton" layoutX="18.0" layoutY="36.0" mnemonicParsing="false" onAction="#afficherpromotions" prefHeight="60.0" prefWidth="273.0" style="-fx-background-radius: 30;" text="Afficher les promotions" textFill="RED" />
+      <Button layoutX="325.0" layoutY="776.0" mnemonicParsing="false" onAction="#uploadImage" prefHeight="44.0" prefWidth="180.0" text="upload" />
+      <ImageView fx:id="imageview" fitHeight="200.0" fitWidth="201.0" layoutX="1031.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true" />
+      <Button layoutX="551.0" layoutY="777.0" mnemonicParsing="false" onAction="#excelabonn" prefHeight="44.0" prefWidth="180.0" style="-fx-background-radius: 30;" text="ajouter Excel" textFill="RED" />
+      <Button layoutX="767.0" layoutY="776.0" mnemonicParsing="false" onAction="#pdfabonn" prefHeight="44.0" prefWidth="180.0" style="-fx-background-radius: 30;" text="pdf" textFill="RED" />
       <TextField fx:id="rechercher" layoutX="1168.0" layoutY="392.0" onKeyPressed="#rechercherabonn" prefHeight="25.0" prefWidth="161.0" promptText="chercher par NOM ou TYPE" />
       <ImageView fx:id="QrCode" fitHeight="139.0" fitWidth="168.0" layoutX="13.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="GoBackBtn" fitHeight="63.0" fitWidth="208.0" layoutX="1205.0" layoutY="777.0" onMouseClicked="#GoBk" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="GoBackBtn" fitHeight="63.0" fitWidth="107.0" layoutX="1011.0" layoutY="767.0" onMouseClicked="#GoBk" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../utils/img/go.png" />
          </image>
       </ImageView>
+      <Button fx:id="goToPong" layoutX="985.0" layoutY="330.0" mnemonicParsing="false" onAction="#goToPong" prefHeight="44.0" prefWidth="180.0" style="-fx-background-radius: 30;" text="goToPong" textFill="RED" />
    </children>
 </AnchorPane>

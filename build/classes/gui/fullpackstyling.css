@@ -1,13 +1,15 @@
-.button{
-    -fx-cursor : hand;
-    -fx-background-color : #E93F12;
-    -fx-background-radius : 50;
-    -fx-text-fill : white;
-    -fx-font-size : 12px;
+.button {
+    -fx-cursor: hand;
+    -fx-background-color: linear-gradient(to bottom, #FF0000, #000000);
+    -fx-background-radius: 50;
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-style: italic;
 }
+
 .button:pressed {
-    -fx-background-color : cyan;
-    -fx-text-fill: black;
+-fx-background-color: linear-gradient(to bottom right, cyan, magenta);
+-fx-text-fill: black;
 }
 
 .combo-box
