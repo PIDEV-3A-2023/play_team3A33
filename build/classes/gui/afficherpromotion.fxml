@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="911.0" prefWidth="1313.0" style="-fx-background-color: #FFDAB9;" stylesheets="@fullpackstyling.css"  xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AfficherpromotionController">
+<AnchorPane id="AnchorPane" prefHeight="911.0" prefWidth="1313.0"  stylesheets="@fullpackstyling.css"  xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AfficherpromotionController">
    <children>
       <ImageView fitHeight="911.0" fitWidth="1321.0">
          <image>

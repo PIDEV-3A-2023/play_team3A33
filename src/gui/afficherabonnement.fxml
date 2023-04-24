@@ -19,16 +19,16 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="909.0" prefWidth="579.0" style="-fx-background-color: #F4A460;" stylesheets="@fullpackstyling.css"  xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AfficherabonnementController">
+<AnchorPane id="AnchorPane" prefHeight="909.0" prefWidth="579.0" style="-fx-background-color: #F4A460;" stylesheets="@fullpackstyling.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AfficherabonnementController">
    <children>
       <ImageView fitHeight="909.0" fitWidth="1294.0">
          <image>
             <Image url="@../utils/img/pexels-leon-ardho-1552249.jpg" />
          </image>
       </ImageView>
-      <ScrollPane layoutX="148.0" layoutY="578.0" prefHeight="311.0" prefWidth="957.0" style="-fx-background-color: #FFE4B5;">
+      <ScrollPane layoutX="148.0" layoutY="509.0" prefHeight="380.0" prefWidth="957.0" style="-fx-background-color: #FFE4B5;">
          <content>
-            <GridPane fx:id="gridabonn" prefHeight="319.0" prefWidth="952.0" style="-fx-background-color: #FFE4B5;">
+            <GridPane fx:id="gridabonn" prefHeight="400.0" prefWidth="952.0" style="-fx-background-color: #FFE4B5;">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

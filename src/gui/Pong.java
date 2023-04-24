@@ -28,9 +28,9 @@ public class Pong extends Application {
         private Parent root;
 	private static final int width = 800;
 	private static final int height = 600;
-	private static final int PLAYER_HEIGHT = 100;
-	private static final int PLAYER_WIDTH = 15;
-	private static final double BALL_R = 15;
+	private static final int PLAYER_HEIGHT = 150;
+	private static final int PLAYER_WIDTH = 30;
+	private static final double BALL_R = 60;
 	private int ballYSpeed = 1;
 	private int ballXSpeed = 1;
 	private double playerOneYPos = height / 2;
@@ -67,11 +67,11 @@ public class Pong extends Application {
 	void run(GraphicsContext gc) {
 		//set graphics
 		//set background color
-		gc.setFill(Color.BLACK);
+		gc.setFill(Color.GREEN);
 		gc.fillRect(0, 0, width, height);
 		
 		//set text
-		gc.setFill(Color.WHITE);
+		gc.setFill(Color.RED);
 		gc.setFont(Font.font(25));
 		
 		if(gameStarted) {

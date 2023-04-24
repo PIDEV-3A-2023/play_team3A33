@@ -30,11 +30,11 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="905.0" prefWidth="1116.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.PongController">
+<AnchorPane id="AnchorPane" prefHeight="600" prefWidth="800" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.PongController">
    <children>
       <StackPane fx:id="gamePane">
          <children>
-            <Canvas fx:id="canvas" height="694.0" width="1025.0" />
+            <Canvas fx:id="canvas" height="600" width="800" />
          </children>
       </StackPane>
       

@@ -76,7 +76,9 @@ import javafx.scene.canvas.Canvas;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.Scene;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Pagination;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 
 
@@ -133,6 +135,9 @@ public class AjouterabonnementController implements Initializable {
     private TableColumn<abonnement, String> descriptionabonnTv;
      @FXML
     private TableColumn<abonnement, Integer> code_promoTv;
+     @FXML
+private VBox root;
+
     @FXML
     private TextField code_promoField;
     
@@ -201,6 +206,7 @@ public void initialize(URL url, ResourceBundle rb) {
     partError.setVisible(false);
     //idLabel.setText("");
     getabonns(); 
+    getabonnss();
 }
 
 
@@ -301,6 +307,7 @@ public void initialize(URL url, ResourceBundle rb) {
             System.out.println(ex.getMessage());
         }      
         getabonns();
+        getabonnss();
         
 
     }}}
@@ -334,7 +341,31 @@ public void initialize(URL url, ResourceBundle rb) {
             System.out.println("error" + ex.getMessage());
         }
     }//get abonns
-
+   public void getabonnss() {  
+    try {
+        List<abonnement> abonnements = Ev.recupererabonnement();
+        int pageSize = 5;
+        int pageCount = (int) Math.ceil((double) abonnements.size() / pageSize);
+        Pagination pagination = new Pagination(pageCount, 0);
+        
+        pagination.currentPageIndexProperty().addListener((obs, oldIndex, newIndex) -> {
+            int startIndex = newIndex.intValue() * pageSize;
+            int endIndex = Math.min(startIndex + pageSize, abonnements.size());
+            ObservableList<abonnement> page = FXCollections.observableArrayList(abonnements.subList(startIndex, endIndex));
+            abonnementTv.setItems(page);
+        });
+        nomabonnTv.setCellValueFactory(new PropertyValueFactory("nom_abonn"));
+        typeabonnTv.setCellValueFactory(new PropertyValueFactory("type_abonn"));
+        imageabonnTv.setCellValueFactory(new PropertyValueFactory("image_abonn"));
+        dateabonnTv.setCellValueFactory(new PropertyValueFactory("date"));
+        descriptionabonnTv.setCellValueFactory(new PropertyValueFactory("description_abonn"));
+        code_promoTv.setCellValueFactory(new PropertyValueFactory("code_promo"));
+        VBox root = new VBox(abonnementTv, pagination);
+this.root.getChildren().setAll(root);
+    } catch (SQLException ex) {
+        System.out.println("error" + ex.getMessage());
+    }
+}
      
      @FXML
    private void modifierabonnement(ActionEvent abonn) throws SQLException {
@@ -349,7 +380,8 @@ public void initialize(URL url, ResourceBundle rb) {
         e.setCode_promo(Integer.valueOf(code_promoField.getText()));         
         Ev.modifierabonnement(e);
         reset();
-        getabonns();         
+        getabonns();   
+        getabonnss();
     }
 
     @FXML
@@ -365,7 +397,8 @@ public void initialize(URL url, ResourceBundle rb) {
         alert.setHeaderText("abonnement delete");
         alert.setContentText("abonnement deleted successfully!");
         alert.showAndWait();        
-        getabonns();    
+        getabonns(); 
+        getabonnss();
     }
 
     @FXML

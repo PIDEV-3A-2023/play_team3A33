@@ -102,14 +102,12 @@ private int ballXSpeed = new Random().nextInt(2) == 0 ? 1 : -1;
 private int ballYSpeed = new Random().nextInt(2) == 0 ? 1 : -1;
 private int scoreP1 = 0;
 private int scoreP2 = 0;
-   private Parent root;
-	
-	private boolean gameStarted;
-	private int playerOneXPos = 0;
-	private double playerTwoXPos = width - PLAYER_WIDTH;
-		
 
+private Parent root;
 
+private boolean gameStarted;
+private int playerOneXPos = 0;
+private double playerTwoXPos = width - PLAYER_WIDTH;
 
 @FXML
 private Canvas canvas;
@@ -121,11 +119,10 @@ private void handleStartButton(ActionEvent event) {
     gameStarted = true;
 }
 
-
 public void initialize() {
     GraphicsContext gc = canvas.getGraphicsContext2D();
 
-    //JavaFX Timeline = free form animation defined by KeyFrames and their duration 
+    //JavaFX Timeline = free form animation defined by KeyFrames and their duration
     Timeline tl = new Timeline(new KeyFrame(Duration.millis(10), e -> run(gc)));
     //number of cycles in animation INDEFINITE = repeat indefinitely
     tl.setCycleCount(Timeline.INDEFINITE);
@@ -137,8 +134,6 @@ public void initialize() {
     tl.play();
 }
 
-
-
 void run(GraphicsContext gc) {
     //set graphics
     //set background color
@@ -146,7 +141,7 @@ void run(GraphicsContext gc) {
     gc.fillRect(0, 0, width, height);
 
     //set text
-    gc.setFill(Color.WHITE);
+    gc.setFill(Color.RED);
     gc.setFont(Font.font(25));
 
     if (gameStarted) {
@@ -161,13 +156,18 @@ void run(GraphicsContext gc) {
             playerTwoYPos = ballYPos > playerTwoYPos + PLAYER_HEIGHT / 2 ? playerTwoYPos + 1 : playerTwoYPos - 1;
         }
         //draw the ball
+        gc.setFill(Color.WHITE);
         gc.fillOval(ballXPos, ballYPos, BALL_R, BALL_R);
+        gc.setFill(Color.RED);
+        gc.fillOval(ballXPos + BALL_R / 3, ballYPos + BALL_R / 3, BALL_R / 3, BALL_R / 3);
 
     } else {
         //set the start text
         gc.setStroke(Color.WHITE);
         gc.setTextAlign(TextAlignment.CENTER);
         gc.strokeText("Click", width / 2, height / 2);
+
+        //
 
         //reset the ball start position 
         ballXPos = width / 2;
